@@ -1,0 +1,32 @@
+<% include /common/doctype.html %>
+<html>
+  <head>
+      <% include /common/header.html %>
+  </head>
+  <body>
+      <% if (typeof(users) === "undefined" || users.length <= 0) { %>
+        <div class="alert alert-info">哎呀，还没有任何用户信息，请先<strong><a href="/admin/users-create.html">创建</a></strong>一个吧！</div>
+      <% } else { %>
+          <table class="table table-striped table-bordered table-hover">
+              <thead>
+              <tr>
+                  <th class="span1"><div class="text-center">#</div></th>
+                  <th><div class="text-center">账号</div></th>
+                  <th><div class="text-center">初始密码</div></th>
+                  <th><div class="text-center">时间</div></th>
+              </tr>
+              </thead>
+              <tbody>
+              <% users.forEach(function(user) { %>
+              <tr>
+                  <td><div class="text-center"><%= user.id %></div></td>
+                  <td><div class="text-center"><%= user.account %></div></td>
+                  <td><div class="text-center"><%= user.password %></div></td>
+                  <td><div class="text-center"><%= dateFormat(user.time) %></div></td>
+              </tr>
+              <% }); %>
+              </tbody>
+          </table>
+      <% } %>
+  </body>
+</html>
